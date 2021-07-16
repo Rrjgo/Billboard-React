@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
-const InputMessage = ({ label, placeholder, onSubmit }) => {
+const MessageBox = ({ label, placeholder, onSubmit }) => {
 
     const [input, setInput] = useState("")
 
     const handleSubmit = () => {
-
     }
-
     return (
         <Form>
             <Form.Group>
@@ -23,4 +21,4 @@ const InputMessage = ({ label, placeholder, onSubmit }) => {
     )
 }
 
-export default InputMessage
+export default MessageBox

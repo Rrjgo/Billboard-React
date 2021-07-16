@@ -1,7 +1,9 @@
 import { Navbar, Container, Row, Col, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import InputMessage from './InputMessage';
+import MessageBox from './MessageBox';
+import RenderMessage from './RenderMessage';
 import { useEffect, useState } from 'react';
+
 
 const message = {
   content: "Hello"
@@ -9,7 +11,7 @@ const message = {
 
 const App = () => {
 
-  const [messages, setMessages] = useState([message, message])
+  const [messages, setMessages] = useState([message])
 
   const addMessage = (msg) => {
     setMessages([...messages, msg])
@@ -44,17 +46,20 @@ const App = () => {
         <Button onClick={() => setValue(value - 1)}>Decrement</Button> */}
         <Row>
           <Col>
-            <InputMessage label="Message" placeholder="Enter Message" onSubmit={addMessage} />
+            <MessageBox label="Message" placeholder="Enter Message" onSubmit={addMessage} />
           </Col>
           <Col>
-            <InputMessage label="Search" placeholder="Enter Search" onSubmit={clearMessage} />
+            <MessageBox label="Search" placeholder="Enter Search" onSubmit={clearMessage} />
           </Col>
         </Row>
 
 
+        <RenderMessage message/>
+        
         {messages?.map(message =>
           <Container>{message.content}</Container>
         )}
+
       </Container>
 
 
