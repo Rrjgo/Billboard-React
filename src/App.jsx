@@ -54,11 +54,7 @@ const App = () => {
         </Row>
 
 
-        <RenderMessage message/>
-        
-        {messages?.map(message =>
-          <Container>{message.content}</Container>
-        )}
+        <RenderMessage messages = {messages}/>
 
       </Container>
 
