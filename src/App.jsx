@@ -22,14 +22,12 @@ const App = () => {
   }
 
   useEffect(() => {
-    <RenderMessage messages = {messages}/>
     console.log("called on start")
     //to call backend 
     // on component mount
   }, [])
 
   useEffect(() => {
-    <RenderMessage messages = {messages}/>
     console.log("message changed")
   }, [messages])
 
@@ -54,6 +52,8 @@ const App = () => {
             <MessageBox label="Search" placeholder="Enter Search" onSubmit={clearMessage} />
           </Col>
         </Row>
+
+        <RenderMessage messages = {messages}/>
 
       </Container>
 
