@@ -1,4 +1,4 @@
-import {Container} from 'react-bootstrap'
+import {Col, Container, Row} from 'react-bootstrap'
 
 const RenderMessage = ({messages}) => {
     
@@ -6,8 +6,19 @@ const RenderMessage = ({messages}) => {
     }
     return (
         
-      messages.map((message) => 
-        <Container>{message.content}</Container>
+      messages.map((msg) => 
+        <Container>
+          <Row>
+            <Col>
+            {msg.message}
+            </Col>
+            <Col>
+            {msg.timestamp}
+            </Col>
+          </Row>
+          
+          
+          </Container>
       )
     
     )

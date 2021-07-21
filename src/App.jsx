@@ -4,14 +4,36 @@ import MessageBox from './MessageBox';
 import RenderMessage from './RenderMessage';
 import { useEffect, useState } from 'react';
 
+const axios = require('axios')
+
+const endpoint = 'https://billboard-backend-hj.herokuapp.com'
+
+axios.get(`${endpoint}/msg`)
+  .then(data => {
+    // handle success
+    console.log(data.data);
+
+    <RenderMessage messages={data.data} />
+
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+
+
 
 const message = {
-  content: "Hello"
+  message: "Hello",
+  timestamp: "2001"
 }
 
 const App = () => {
 
-  const [messages, setMessages] = useState([message])
+  const [messages, setMessages] = useState([message, message])
 
   const addMessage = (msg) => {
     setMessages([...messages, msg])
@@ -53,7 +75,7 @@ const App = () => {
           </Col>
         </Row>
 
-        <RenderMessage messages = {messages}/>
+        <RenderMessage messages={messages} />
 
       </Container>
 
