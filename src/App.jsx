@@ -1,4 +1,4 @@
-import { Navbar, Container, Row, Col, Button } from 'react-bootstrap'
+import { Navbar, Container, Row, Col, } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MessageBox from './MessageBox';
 import RenderMessage from './RenderMessage';
@@ -8,58 +8,38 @@ const axios = require('axios')
 
 const endpoint = 'https://billboard-backend-hj.herokuapp.com'
 
-const message = {
-  message: "Hello",
-  timestamp: "2001"
-}
-
 const App = () => {
 
-
-
-
-
-
-
-
+  const [showMessage, setShowMessage] = useState(true)
 
   const [messages, setMessages] = useState([])
+  const [searchMessages, setSearchMessages] = useState([])
 
-  const addMessage = async (msg) => {
+  const addMessage = async ({ message }) => {
+    setShowMessage(true)
 
     const { data: newMessage } = await axios.post(`${endpoint}/msg`, {
-      message: msg.message
+      message
     })
-
     setMessages([...messages, newMessage])
 
   }
 
-  const clearMessage = () => {
-    setMessages([""])
+  const searchMessage = async ({ message }) => {
+    setShowMessage(false)
+
+    const { data: searchMessages } = await axios.post(`${endpoint}/msg/search`, {
+      message
+    })
+    setSearchMessages(searchMessages)
   }
 
-  useEffect(() => {
+  useEffect(async () => {
     console.log("called on start")
 
-    axios.get(`${endpoint}/msg`)
-      .then(data => {
-        // handle success
-        console.log(data.data);
+    const { data: messages } = await axios.get(`${endpoint}/msg`)
+    setMessages(messages)
 
-        setMessages(data.data)
-
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-
-    //to call backend 
-    // on component mount
   }, [])
 
   useEffect(() => {
@@ -76,8 +56,6 @@ const App = () => {
         </Container>
       </Navbar>
 
-
-
       <Container style={{ maxWidth: '1000px', margin: 'auto' }}>
         {/* <Button onClick={() => setValue(value + 1)}>Increment</Button>
         <Button onClick={() => setValue(value - 1)}>Decrement</Button> */}
@@ -86,21 +64,16 @@ const App = () => {
             <MessageBox label="Message" placeholder="Enter Message" onSubmit={addMessage} />
           </Col>
           <Col>
-            <MessageBox label="Search" placeholder="Enter Search" onSubmit={clearMessage} />
+            <MessageBox label="Search" placeholder="Enter Search" onSubmit={searchMessage} />
           </Col>
         </Row>
 
-        <RenderMessage messages={messages} />
-
+        <RenderMessage messages={showMessage ? messages : searchMessages} />
 
       </Container>
-
-
 
     </Container>
   );
 }
-
-
 
 export default App;
