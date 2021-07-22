@@ -34,11 +34,14 @@ const App = () => {
     setSearchMessages(searchMessages)
   }
 
-  useEffect(async () => {
-    console.log("called on start")
+  useEffect(() => {
+    async function test() {
+      console.log("called on start")
 
-    const { data: messages } = await axios.get(`${endpoint}/msg`)
-    setMessages(messages)
+      const { data: messages } = await axios.get(`${endpoint}/msg`)
+      setMessages(messages)
+    }
+    test()
 
   }, [])
 
