@@ -5,8 +5,6 @@ const MessageBox = ({ label, placeholder, onSubmit }) => {
 
     const [input, setInput] = useState("")
 
-    const handleSubmit = () => {
-    }
     return (
         <Form>
             <Form.Group>

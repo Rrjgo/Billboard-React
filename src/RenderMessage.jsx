@@ -1,27 +1,24 @@
-import {Col, Container, Row} from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 
-const RenderMessage = ({messages}) => {
-    
-    const handleSubmit = () => {
-    }
-    return (
-        
-      messages.map((msg) => 
-        <Container>
-          <Row>
-            <Col>
+const RenderMessage = ({ messages }) => {
+  return (
+
+    messages.map((msg) =>
+      <Container>
+        <Row>
+          <Col>
             {msg.message}
-            </Col>
-            <Col>
+          </Col>
+          <Col>
             {msg.timestamp}
-            </Col>
-          </Row>
-          
-          
-          </Container>
-      )
-    
+          </Col>
+        </Row>
+
+
+      </Container>
     )
+
+  )
 
 }
 
