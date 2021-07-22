@@ -8,24 +8,6 @@ const axios = require('axios')
 
 const endpoint = 'https://billboard-backend-hj.herokuapp.com'
 
-axios.get(`${endpoint}/msg`)
-  .then(data => {
-    // handle success
-    console.log(data.data);
-
-    <RenderMessage messages={data.data} />
-
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
-
-
-
 const message = {
   message: "Hello",
   timestamp: "2001"
@@ -33,10 +15,24 @@ const message = {
 
 const App = () => {
 
-  const [messages, setMessages] = useState([message, message])
 
-  const addMessage = (msg) => {
-    setMessages([...messages, msg])
+
+
+
+
+
+
+
+  const [messages, setMessages] = useState([])
+
+  const addMessage = async (msg) => {
+
+    const { data: newMessage } = await axios.post(`${endpoint}/msg`, {
+      message: msg.message
+    })
+
+    setMessages([...messages, newMessage])
+
   }
 
   const clearMessage = () => {
@@ -45,12 +41,31 @@ const App = () => {
 
   useEffect(() => {
     console.log("called on start")
+
+    axios.get(`${endpoint}/msg`)
+      .then(data => {
+        // handle success
+        console.log(data.data);
+
+        setMessages(data.data)
+
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+
     //to call backend 
     // on component mount
   }, [])
 
   useEffect(() => {
+
     console.log("message changed")
+
   }, [messages])
 
   return (
@@ -76,6 +91,7 @@ const App = () => {
         </Row>
 
         <RenderMessage messages={messages} />
+
 
       </Container>
 

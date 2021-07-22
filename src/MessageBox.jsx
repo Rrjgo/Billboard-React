@@ -14,7 +14,7 @@ const MessageBox = ({ label, placeholder, onSubmit }) => {
                 <Form.Control value={input} onChange={e => setInput(e.target.value)} placeholder={placeholder} />
             </Form.Group>
 
-            <Button variant="primary" onClick={() => onSubmit({ content: input })}>
+            <Button variant="primary" onClick={() => onSubmit({ message: input })}>
                 Submit
             </Button>
         </Form>
