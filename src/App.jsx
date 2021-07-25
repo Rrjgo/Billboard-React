@@ -1,8 +1,9 @@
 import { Navbar, Container, Row, Col, } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { io } from 'socket.io-client'
+import { useEffect, useState } from 'react';
 import MessageBox from './MessageBox';
 import RenderMessage from './RenderMessage';
-import { useEffect, useState } from 'react';
 
 const axios = require('axios')
 
@@ -15,6 +16,9 @@ const App = () => {
   const [messages, setMessages] = useState([])
   const [searchMessages, setSearchMessages] = useState([])
 
+ const socket =io(`${endpoint}/msg`)
+
+
   const addMessage = async ({ message }) => {
     setShowMessage(true)
 
@@ -22,7 +26,6 @@ const App = () => {
       message
     })
     setMessages([...messages, newMessage])
-
   }
 
   const searchMessage = async ({ message }) => {
