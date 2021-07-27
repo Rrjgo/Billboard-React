@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Billboard-React/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/Billboard-React/static/js/main.9d968f45.chunk.js",
+    "main.js.map": "/Billboard-React/static/js/main.9d968f45.chunk.js.map",
+    "runtime-main.js": "/Billboard-React/static/js/runtime-main.9ef39765.js",
+    "runtime-main.js.map": "/Billboard-React/static/js/runtime-main.9ef39765.js.map",
+    "static/css/2.4be38407.chunk.css": "/Billboard-React/static/css/2.4be38407.chunk.css",
+    "static/js/2.a7f3d641.chunk.js": "/Billboard-React/static/js/2.a7f3d641.chunk.js",
+    "static/js/2.a7f3d641.chunk.js.map": "/Billboard-React/static/js/2.a7f3d641.chunk.js.map",
+    "index.html": "/Billboard-React/index.html",
+    "static/css/2.4be38407.chunk.css.map": "/Billboard-React/static/css/2.4be38407.chunk.css.map",
+    "static/css/main.6dea0f05.chunk.css.map": "/Billboard-React/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.a7f3d641.chunk.js.LICENSE.txt": "/Billboard-React/static/js/2.a7f3d641.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9ef39765.js",
+    "static/css/2.4be38407.chunk.css",
+    "static/js/2.a7f3d641.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.9d968f45.chunk.js"
+  ]
+}
