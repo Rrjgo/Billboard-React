@@ -17,6 +17,9 @@ const App = () => {
   const [searchMessages, setSearchMessages] = useState([])
 
  const socket =io(`${endpoint}/msg`)
+ socket.on('connect', () => {
+  setMessages([...messages, { message: "Hello" }])
+ })
 
 
   const addMessage = async ({ message }) => {
