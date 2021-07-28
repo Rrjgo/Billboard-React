@@ -7,20 +7,15 @@ import RenderMessage from './RenderMessage';
 
 const axios = require('axios')
 
-const endpoint = 'https://billboard-backend-hj.herokuapp.com'
+const endpoint = process.env.REACT_APP_BACKEND || 'https://billboard-backend-hj.herokuapp.com'
+
+let socket
 
 const App = () => {
 
   const [showMessage, setShowMessage] = useState(true)
-
   const [messages, setMessages] = useState([])
   const [searchMessages, setSearchMessages] = useState([])
-
- const socket =io(`${endpoint}/msg`)
- socket.on('connect', () => {
-  setMessages([...messages, { message: "Hello" }])
- })
-
 
   const addMessage = async ({ message }) => {
     setShowMessage(true)
@@ -28,7 +23,7 @@ const App = () => {
     const { data: newMessage } = await axios.post(`${endpoint}/msg`, {
       message
     })
-    setMessages([...messages, newMessage])
+
   }
 
   const searchMessage = async ({ message }) => {
@@ -49,11 +44,23 @@ const App = () => {
     }
     test()
 
+    socket = io(`${endpoint}`)
+    socket.on('connect', () => {
+
+      console.log("connected")
+    })
+
+
+
   }, [])
 
   useEffect(() => {
 
     console.log("message changed")
+    console.log(socket)
+    socket?.on('message', (message) => {
+      setMessages([...messages, message])
+    })
 
   }, [messages])
 
